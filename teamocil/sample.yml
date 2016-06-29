@@ -1,0 +1,50 @@
+windows:
+  - name: w-1
+    root: ~/repos
+    layout: even-horizontal
+    panes:
+      - vagrant up
+  - name: w-2
+    root: ~/repos
+    layout: even-horizontal
+    panes:
+      - vagrant ssh
+  - name: w-3
+    root: ~/repos/all-the-things
+    layout: even-horizontal
+    panes:
+      - git status
+  - name: w-4
+    root: ~/repos/all-the-things
+    layout: even-horizontal
+    panes:
+      - git status
+  - name: w-5
+    root: ~/repos/all-the-things
+    layout: even-horizontal
+    panes:
+      - git status
+      - cd /Users/yanzhibai/repos/all-the-things-master; git status
+  - name: w-6
+    root: ~/
+    layout: even-horizontal
+    panes:
+      - cd /Users/yanzhibai/repos/python-practice; ipython
+      - cd /Users/yanzhibai/data; ls
+  - name: w-7-to-dev
+    root: ~/repos/all-the-things
+    layout: even-horizontal
+    panes:
+      - git status
+  - name: w-8-sherlock
+    root: ~/repos/all-the-things
+    layout: even-horizontal
+    panes:
+      - PGPASSWORD="F9df-4054-b910" psql -U yanzhibai -h sherlock.affirm.com -p 5439 affirm
+  - name: w-9
+    root: ~/
+    layout: even-horizontal
+    panes:
+      - ssh-add ~/.ssh/id_rsa; ssh-agent; ls
+      - ls
+
