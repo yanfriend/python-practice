@@ -35,7 +35,7 @@ windows:
     root: ~/repos/all-the-things
     layout: even-horizontal
     panes:
-      - git status
+      - ssh -fN yanzhibai@sherlock
   - name: w-8-sherlock
     root: ~/repos/all-the-things
     layout: even-horizontal
