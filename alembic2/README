@@ -1,0 +1,63 @@
+https://michaelheap.com/alembic-python-migrations-quick-start/
+
+alembic – Python migrations quick start
+
+ January 3, 2014  michael  How To, Programming
+I’m doing all of this in a virtualenv container. You don’t need to (but if you don’t, you might need to sudo the pip commands). If you’re not and you want to, take a look at my virtualenv intro to get up and running.
+
+# Start by installing the module
+$ pip install alembic
+
+# Create your migrations environment. We use "generic" which is a single database setup
+$ alembic init --template generic alembic
+
+# Edit alembic.ini with your connection details
+$ nano +18 alembic.ini
+The format is driver://user:pass@host/dbname, so mine looks like this:
+
+sqlalchemy.url = mysql://root:@localhost/database_name
+You can test that your details are correct using the line:
+
+$ alembic current
+# Current revision for mysql://root:@localhost/database_name: None
+Once you can connect, you’ll need to create your first migration
+
+$ alembic revision -m "Create users table"
+Alembic uses SQLAlchemy to manage your migrations. You’ll probably want to take a look at the relevant docs. Let’s create a basic table by replacing the upgrade method.
+
+def upgrade():
+    op.create_table(
+        'users',
+        sa.Column('id', sa.Integer, primary_key=True),
+        sa.Column('name', sa.String(50), nullable=False),
+        sa.Column('chosen_decimal', sa.Numeric(16,8), nullable=False),
+        sa.Column('dob', sa.DateTime, nullable=False),
+    )
+Of course, migrations only work if you can go both ways, so let’s implement the downgrade method too.
+
+def downgrade():
+    op.drop_table('users')
+Let’s run our migration and create our table to head. head is a special version, which means “use the latest available”
+
+$ alembic upgrade head
+You should see output similar to the following:
+
+INFO  [alembic.migration] Context impl MySQLImpl.
+INFO  [alembic.migration] Will assume non-transactional DDL.
+INFO  [alembic.migration] Running upgrade None -> 469d90f0cd28, Create users table
+You can now connect to your database and run SHOW TABLES to make sure that the table is created.
+
+If we want to undo that migration, we can use the downgrade command.
+
+$ alembic downgrade -1
+You should see the following:
+
+INFO  [alembic.migration] Context impl MySQLImpl.
+INFO  [alembic.migration] Will assume non-transactional DDL.
+INFO  [alembic.migration] Running downgrade 469d90f0cd28 -> None, Create users table
+If you want to go right back to the beginning, alembic has another special term called base, which is the opposite of head. This means that if your migrations are complete, you can delete your entire database and recreate it with the following commands:
+
+$ alembic downgrade base
+$ alembic upgrade head
+The alembic documentation is pretty good and contains all of this (and more!) so be sure to take a look at that too. Hopefully this has been a useful quick start guide though.
+
