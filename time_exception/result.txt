@@ -1,0 +1,43 @@
+a = 1
+try:
+    b = 10/a
+except ZeroDivisionError:
+    pass
+0.070720 usec/pass
+
+a = 1
+if a:
+    b = 10/a
+0.070400 usec/pass
+
+a = 1
+b = 10/a
+0.056920 usec/pass
+
+a = 0
+try:
+    b = 10/a
+except ZeroDivisionError:
+    pass
+0.686700 usec/pass
+
+a = 0
+if a:
+    b = 10/a
+0.025980 usec/pass
+
+a = 0
+b = 10/a
+Traceback (most recent call last):
+  File "test_exp.py", line 17, in <module>
+    print("%.6f usec/pass\n" % (1000000 * t.timeit(number=100000)/100000))
+  File "/usr/local/Cellar/python/2.7.12_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/timeit.py", line 202, in timeit
+    timing = self.inner(it, self.timer)
+  File "<timeit-src>", line 6, in inner
+ZeroDivisionError: integer division or modulo by zero
+
+Note: 
+For Python, 
+'try except' is faster than 'if', if no exception is thrown. 
+if exception thrown, 'if' is faster.
+
