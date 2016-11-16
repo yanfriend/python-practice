@@ -1,0 +1,8 @@
+Context managers allow you to allocate and release resources precisely when you want to. The most widely used example of context managers is the with statement.
+
+25.1. Implementing Context Manager as a Class:
+At the very least a context manager has an __enter__ and __exit__ methods defined. 
+
+25.3. Implementing a Context Manager as a Generator
+We can also implement Context Managers using decorators and generators. Python has a contextlib module for this very purpose. Instead of a class, we can implement a Context Manager using a generator function
+
