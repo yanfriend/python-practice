@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
+
 def convert_data_to_timeseries(input_file, column, verbose=False):
     # Load the input file
     data = np.loadtxt(input_file, delimiter=',')
@@ -24,6 +25,7 @@ def convert_data_to_timeseries(input_file, column, verbose=False):
         print "\nTime series data:\n", data_timeseries[:10]
 
     return data_timeseries
+
 
 if __name__=='__main__':
     # Input file containing data

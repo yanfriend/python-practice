@@ -43,4 +43,3 @@ records_to_delete = session.query(MyTable).filter_by(name='Super')
 for record in records_to_delete:
         session.delete(record)
 session.commit()
-
