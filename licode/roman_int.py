@@ -4,7 +4,7 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        letter_to_dict = {
+        letter_to_num = {
             'I': 1,
             'V': 5,
             'X': 10,
@@ -14,12 +14,12 @@ class Solution(object):
             'M': 1000
         }
 
-        ret=letter_to_dict[s[-1]]
+        ret=letter_to_num[s[-1]]
         for i in range(len(s)-2,-1,-1):
-            if letter_to_dict[s[i]]<letter_to_dict[s[i+1]]:
-                ret-=letter_to_dict[s[i]]
+            if letter_to_num[s[i]]<letter_to_num[s[i+1]]:
+                ret-=letter_to_num[s[i]]
             else:
-                ret+=letter_to_dict[s[i]]
+                ret+=letter_to_num[s[i]]
         return ret
 
 print Solution().romanToInt('DCXXI')

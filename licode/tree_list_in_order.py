@@ -4,26 +4,28 @@ class TreeNode:
         self.left=None
         self.right=None
 
-def tree_to_list(root):
+def tree_to_list_in_order(root):
     h,t=tl_helper(root)
     return h
 
 def tl_helper(root):
     if not root: return None,None
 
-    hl,tl=tl_helper(root.left)
-    hr,tr=tl_helper(root.right)
+    lh,lt=tl_helper(root.left)
+    rh,rt=tl_helper(root.right)
 
-    root.left=tl
-    if tl: tl.right=root
-    else: hl=tl=root
+    root.left=lt
+    if lt: lt.right=root
+    else: lh=lt=root
 
-    root.right=hr
-    if hr: hr.left=root
-    else: tl=tr=root
+    root.right=rh
+    if rh: rh.left=root
+    else: lt=rt=root
 
-    return hl,tr
+    return lh,rt
 
+
+# below for testing
 root=TreeNode(10)
 root.left=TreeNode(5)
 root.left.left=TreeNode(4)
@@ -32,7 +34,7 @@ root.right=TreeNode(15)
 root.right.left=TreeNode(14)
 root.right.right=TreeNode(18)
 
-node=tree_to_list(root)
+node=tree_to_list_in_order(root)
 
 # print node
 prev=None
