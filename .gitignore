@@ -1,4 +1,9 @@
 # python compiled files
-*.py[cod]
+*.pyc
 
 /bin/
+
+.idea/
+
+.idea/workspace.xml
+
