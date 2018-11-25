@@ -1,0 +1,9 @@
+# python compiled files
+*.pyc
+
+/bin/
+
+.idea/
+
+.idea/workspace.xml
+
