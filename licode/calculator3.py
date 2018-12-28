@@ -1,5 +1,47 @@
 class Solution(object):
     def calculate(self, s):
+        s = s + '='
+        operands = []
+        operators = []
+        base = 0
+        precedences = {'+': 1, '-': 1, '*': 2, '/': 2, '=': float('-inf')}
+
+        def cal(op, n2, n1):
+            if op == '+':
+                return n1 + n2
+            elif op == '-':
+                return n1 - n2
+            elif op == '*':
+                return n1 * n2
+            elif op == '/':
+                return n1 / n2
+            return 0
+
+        i = 0
+        while i < len(s):
+            if s[i].isdigit():
+                num = 0
+                while s[i].isdigit(): # while i < len(s) and s[i].isdigit():
+                    num = num * 10 + int(s[i])
+                    i += 1
+                operands.append(num)
+                i -= 1
+            elif s[i] == '(':
+                base += 5
+            elif s[i] == ')':
+                base -= 5
+            elif s[i] in '+-*/=':
+                while operators and operators[-1][1] >= (base + precedences[s[i]]):
+                    op, _ = operators.pop()
+                    operands.append(cal(op, operands.pop(), operands.pop()))
+                operators.append((s[i], base + precedences[s[i]]))
+            i += 1
+        return operands[0]
+
+
+
+
+    def calculate_recursive(self, s): # this is also a good. might save some space? but recursions
         ans = 0; curr_ans = 0
         sign = 1; prev_op=-1 # 0-mul 1-div
         i = 0
@@ -44,9 +86,9 @@ class Solution(object):
         ans+=sign*curr_ans
         return ans
 
-# print Solution().calculate('2+6')
-# print Solution().calculate('(2+6)')
-# print Solution().calculate('(2+6*3)')
+print Solution().calculate('2+6')
+print Solution().calculate('(2+6)')
+print Solution().calculate('(2+6*3)')
 
 print Solution().calculate("(2+6*3+5-(3*14/7+2)*5)+3")  # =-12
-# print Solution().calculate('3*14/7+2')
+print Solution().calculate('3*14/7+2')

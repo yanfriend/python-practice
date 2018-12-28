@@ -18,6 +18,7 @@ class Solution(object):
                 if A[k-1]==-1: continue
 
                 if cost[i]>cost[k]+A[i-1]: # as k is increasing, if equlas, log the smaller one only
+                    # small bug on path
                     cost[i]=cost[k]+A[i-1]
                     prev[i]=k
 
