@@ -9,7 +9,7 @@ def pourWater(heights, V, K):
     water=[0]*n
     for i in range(V):
         ind=K
-        while ind-1>=0 and heights[ind-1]+water[ind-1]<heights[ind]+water[ind]:
+        while ind-1>=0 and heights[ind-1]+water[ind-1]<heights[ind]+water[ind]: # error
             ind-=1
         if ind<K:
             water[ind]+=1

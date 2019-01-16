@@ -1,46 +1,77 @@
 import collections
 
-Map=lambda : collections.defaultdict(Map)
-value=1
+Trie = lambda: collections.defaultdict(Trie)
+value = 1
 
 
 class Solution(object):
     def __init__(self):
-        self.mp=Map()
+        self.folder = Trie()
+        self.wt = Trie()
 
     def create(self, path, val):
-        folders = path.split('/')[1:] # skip init '' from /
-        tmp=self.mp
+        folders = path.split('/')[1:]  # skip init '' from /
+        tmp = self.folder
         for f in folders[:-1]:
             if f in tmp:
-                tmp=tmp[f]
+                tmp = tmp[f]
             else:
                 return False
-        tmp=tmp[folders[-1]]
-        tmp[value]=val
+        tmp = tmp[folders[-1]]
+        tmp[value] = val
+
+        wtmp = self.wt
+        for f in folders:
+            if f in wtmp:
+                wtmp = wtmp[f]
+                if wtmp[value]:
+                    wtmp[value]()
+            else:
+                return False
 
     def get(self, path):
         folders = path.split('/')[1:]
-        tmp = self.mp
+        tmp = self.folder
         for f in folders:
             if f in tmp:
-                tmp=tmp[f]
+                tmp = tmp[f]
             else:
                 return False
         return tmp[value]
 
-sol=Solution()
+    def watch(self, path, func):
+        folders = path.split('/')[1:]  # skip init '' from /
+        tmp = self.wt
+        for f in folders[:-1]:
+            if f in tmp:
+                tmp = tmp[f]
+            else:
+                return False
+        tmp = tmp[folders[-1]]
+        tmp[value] = func
 
-print sol.create('/a',1) # ok.
+
+sol = Solution()
+
+
+def pt1():
+    print 'yes'
+def pt2():
+    print 'no'
+
+print sol.watch('/a', pt1)
+print sol.watch('/a/b', pt2)
+
+print sol.create('/a', 1)  # ok.
 print sol.get('/a')
 
-print sol.create('/a/b',2)
+print sol.create('/a/b', 2)
 print sol.get('/a/b')
 
-print sol.create('/a/b/c',3) # ok.
-print sol.get('/a/b')
-
-print sol.create('/c/d', 2) # err
-print sol.get('/c') # err
+#
+# print sol.create('/a/b/c',3) # ok.
+# print sol.get('/a/b')
 
 
+# print sol.create('/c/d', 2) # err
+# print sol.get('/c') # err

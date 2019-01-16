@@ -4,8 +4,8 @@ class Solution(object):
     def hilbert_curve(self, x, y, iter):
         if iter == 0: return 1
 
-        harfLen = 1 << (iter - 1)  # 1(iter==1),2,4,8,16, length of each limit
-        harfNum = 1 << (2 * iter - 2)  # 1(iter==1), 4, 16, 64  numbers in each limit
+        harfLen = 2**(iter-1) # 1 << (iter - 1)  # 1(iter==1),2,4,8,16, length of each limit
+        harfNum = 2**(2*(iter-1)) # 1 << (2 * (iter - 1))  # 1(iter==1), 4, 16, 64  numbers in each limit
 
         if x >= harfLen and y >= harfLen:  # top, right.
             return 2 * harfNum + self.hilbert_curve(x - harfLen, y - harfLen, iter - 1)
@@ -21,16 +21,15 @@ class Solution(object):
 
 
 # 问你在iter这张图中在(x, y)坐标的点是第几个, ok
-# print Solution().hilbert_curve(0, 0, 1)  # 1
-# print Solution().hilbert_curve(0, 1, 1)  # 2
-# print Solution().hilbert_curve(1, 1, 1)  # 3
-# print Solution().hilbert_curve(1, 0, 1)  # 4
+print Solution().hilbert_curve(0, 0, 1)  # 1
+print Solution().hilbert_curve(0, 1, 1)  # 2
+print Solution().hilbert_curve(1, 1, 1)  # 3
+print Solution().hilbert_curve(1, 0, 1)  # 4
 
 print Solution().hilbert_curve(1, 1, 2)  # 3
 print Solution().hilbert_curve(2, 2, 2)  # 9
 
-# print Solution().hilbert_curve(1, 1, 2)
-# print Solution().hilbert_curve(2, 2, 2)
-# print Solution().hilbert_curve(1, 3, 2)
-# print Solution().hilbert_curve(3, 1, 2)
-
+print Solution().hilbert_curve(1, 1, 2)  # 3, 9, 7, 13
+print Solution().hilbert_curve(2, 2, 2)
+print Solution().hilbert_curve(1, 3, 2)
+print Solution().hilbert_curve(3, 1, 2)

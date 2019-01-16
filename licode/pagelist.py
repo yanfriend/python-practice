@@ -31,13 +31,50 @@ class Solution(object):
             if lineid == k:
                 lineid = 0
 
-input=[1,2,1,3,4,5,6]
-print Solution().pagelist(input, 3)
+# input=[1,2,1,3,4,5,6]
+# print Solution().pagelist(input, 3)
+#
+#
+# input=[1,1,1,1,1,1,1]
+# print Solution().pagelist(input, 3)
+#
+#
+# input=[1,2,3,4,1,5,1,2,3,1,3]
+# print Solution().pagelist(input, 5) # 12345,12313,1
 
 
-input=[1,1,1,1,1,1,1]
-print Solution().pagelist(input, 3)
+lines=[
+"1,28,310.6,SF",
+"4,5,204.1,SF",
+"20,7,203.2,Oakland",
+"6,8,202.2,SF",
+"6,10,199.1,SF",
+"1,16,190.4,SF",
+"6,29,185.2,SF",
+"7,20,180.1,SF",
+"6,21,162.1,SF",
+"2,18,161.2,SF",
+"2,30,149.1,SF",
+"3,76,146.2,SF",
+"2,14,141.1,San Jose",
+]
 
+Solution().pagelist(lines,5)
 
-input=[1,2,3,4,1,5,1,2,3,1,3]
-print Solution().pagelist(input, 5) # 12345,12313,1
+"""
+1,28,310.6,SF
+4,5,204.1,SF
+20,7,203.2,Oakland
+6,8,202.2,SF
+7,20,180.1,SF 
+
+6,10,199.1,SF 
+1,16,190.4,SF 
+2,18,161.2,SF
+3,76,146.2,SF
+6,29,185.2,SF  -- has to
+
+6,21,162.1,SF
+2,30,149.1,SF
+2,14,141.1,San Jose. From 1point 3acres bbs
+"""

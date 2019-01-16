@@ -91,8 +91,13 @@ class Boggle(object):
 # print Boggle(board,dictionary).findMostStr()  # expect: oath, eat
 
 
-words=["ab","ac","acd","c","d"]
-dictionary=set(words)
-board=["ab","cd","ab","cd"]
+# words=["ab","ac","acd","c","d"]
+# dictionary=set(words)
+# board=["ab","cd","ab","cd"]
+# board=[[c for c in row] for row in board]
+# print Boggle(board, dictionary).findMostStr() # ['d', 'c', 'ab', 'd', 'c', 'ab']
+
+board=['abc','def','ghi']
 board=[[c for c in row] for row in board]
-print Boggle(board, dictionary).findMostStr() # ['d', 'c', 'ab', 'd', 'c', 'ab']
+dictionary = set(["abc", "cfi", "beh", "defi", "gh"])
+print Boggle(board,dictionary).findMostStr() # ['gh', 'defi', 'abc']

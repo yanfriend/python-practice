@@ -1,31 +1,29 @@
 from Queue import PriorityQueue
 
+class Node(object):
+    def __init__(self, val, parent=None):
+        self.val=val
+        self.parent=parent
 
 class Solution(object):
-
     def min_distance(self, wizards, source, target):
         q = PriorityQueue()
-        parents = [0] * len(wizards)
 
-        q.put((0, source, [source]))  # distance, id, parent_node_id
+        q.put((0, Node(source)))  # distance, Node of id, parent_node_id
 
-        def print_return():
-            id = target
-            ans = []
-            while id != source:
-                ans.append(id)
-                id = parents[id]
-            ans.append(source)
-            print list(reversed(ans))
+        def print_path(node):
+            ret = []
+            while node != None:
+                ret.append(node.val)
+                node = node.parent
+            print ret[::-1]
 
         while q.qsize() > 0:
-            distance, id, parent_id = q.get()
+            distance, node = q.get()
+            if node.val == target: print_path(node); return distance
 
-            if id == target: print parent_id; print_return(); return distance
-
-            for i, node in enumerate(wizards[id]):
-                parents[node] = id
-                q.put((distance + (id - node) ** 2, node, parent_id + [node]))
+            for i, nei in enumerate(wizards[node.val]):
+                q.put((distance + (nei - node.val) ** 2, Node(nei, node)))
 
         return -1
 
@@ -45,5 +43,5 @@ wizards = [
     []
 ]
 
-print Solution().min_distance(wizards, 0, 9)
+print Solution().min_distance(wizards, 0, 9) # 33
 # 0->9(81), or 0->5->9(25+16<81), 0->1->5->9 (16+16+1=33)
