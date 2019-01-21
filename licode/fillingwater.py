@@ -91,6 +91,8 @@ waterLand = [3, 1, 1, 1, 2] # all correct
 # print Solution().fill_water(waterLand, 2, 6);
 
 
-waterLand = [1, 1, 1, 1, 1] # all empty
-print Solution().fill_water(waterLand, 2, 1);
+# waterLand = [1, 1, 1, 1, 1] # all empty
+# print Solution().fill_water(waterLand, 2, 1);
 
+waterLand = [2,1,0,3,2,6]
+print Solution().fill_water(waterLand, 4, 100);

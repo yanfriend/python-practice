@@ -14,10 +14,10 @@ def fill_four_letter():
             if word[i] == secret[i]: ans += 1
         return ans
 
-    for ind, lt in enumerate(digits):
+    for ind, letter in enumerate(digits):
         for i in range(4):
             if ans[i] != bad_dg: continue
-            ans[i] = lt
+            ans[i] = letter
             if i == 4 - ind - 1: break
             if test(ans) == ind + 1:
                 cnt += 1

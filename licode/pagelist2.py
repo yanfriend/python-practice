@@ -1,9 +1,6 @@
-import collections
 
-def panation(lines):
-
-    i=0; n=len(lines)
-    pages=[]
+def panation(lines, k):
+    ret=[]
 
     while len(lines)>0:
         page = []
@@ -17,57 +14,28 @@ def panation(lines):
                 page.append(line)
                 visited.add(id)
                 indices.append(ind)
-                if len(page)==5:
+                if len(page)==k:
                     full_page=True
                     break
 
-        if full_page:
-            pages.append(page)
+        for i in indices[::-1]:
+            del lines[i]
+        indices=[]
+
+        if not full_page:  # page not full
+            for ind, line in enumerate(lines):
+                id = int(line.split(',')[0])
+                page.append(line)
+                # visited.add(id)
+                indices.append(ind)
+                if len(page) == k:
+                    break
             for i in indices[::-1]:
                 del lines[i]
-        else: # page not full
-            if len(lines)>0:
-                for ind, line in enumerate(lines):
-                    id = int(line.split(',')[0])
-                    page.append(line)
-                    visited.add(id)
-                    indices.append(ind)
-                    if len(page) == 5:
-                        full_page = True
-                        break
-                if full_page:
-                    pages.append(page)
-                for i in sorted(indices)[::-1]:
-                    del lines[i]
 
-    return pages
+        ret.append(page)
 
-
-def panation_id_to_page(lines): # need to sort if page size<5
-    id_to_page={}
-    pages=collections.defaultdict(list)
-    curr_page_id=0
-
-    for line in lines:
-        id=int(line.split(',')[0])
-        last_id=id_to_page.get(id,-1)
-
-        new_id = max(last_id+1, curr_page_id)
-
-        id_to_page[id] = new_id
-        pages[new_id].append(line)
-
-        if len(pages[curr_page_id])==5:
-            curr_page_id+=1
-
-    num=0
-    for i in range(max(pages)+1):
-        page_lines=pages[i]
-        for l in page_lines:
-            print l
-            num+=1
-            if num%5==0:
-                print ''
+    return ret
 
 lines=[
 "1,28,310.6,SF",
@@ -85,9 +53,10 @@ lines=[
 "2,14,141.1,San Jose",
 ]
 
-panation(lines)
+print panation(lines,k=5)
 
 """
+output
 1,28,310.6,SF
 4,5,204.1,SF
 20,7,203.2,Oakland
@@ -104,3 +73,15 @@ panation(lines)
 2,30,149.1,SF
 2,14,141.1,San Jose. From 1point 3acres bbs
 """
+
+
+input=['1','2','1','3','4','5','6']
+print panation(input, 3)
+#
+input=['1','1','1','1','1','1','1']
+print panation(input, 3)
+#
+#
+input=['1','2','3','4','1','5',
+       '1','2','3','1','3']
+print panation(input, 5) # new one: 12345, 12311, 3;  # 12345,12313,1

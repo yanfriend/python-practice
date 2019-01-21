@@ -21,7 +21,10 @@ def menu_items(menus, K):  # can order multiple times of one item
     return ret
     # return min([len(i) for i in ret]) # shortest length
 
-# print menu_items([2, 3, 5, 8], 10)
+print menu_items([2, 3, 5, 8], 10)
 # print menu_items([5, 3, 2, 8], 10)
 
 print menu_items([1, 2, 3, 4, 5],9)
+
+
+print menu_items([1, 2, 3, 4, 5], -9)
