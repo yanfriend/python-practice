@@ -59,7 +59,8 @@ class Boggle(object):
                         # w_keep[(i,j)]=self.board[i][j]
                         self.board[i][j]='#'
 
-                    curr_maxret = board_dfs(pos+1) # note, here is pos
+                    curr_maxret = board_dfs(pos+1) # note, here is pos.
+                    # why pos, need to give later i,j higher priority too
 
                     for ind, (i, j) in enumerate(w_indices):
                         self.board[i][j] = word[ind]
