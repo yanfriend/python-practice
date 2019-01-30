@@ -1,4 +1,5 @@
 def csv_parser(line):
+    QUOTE='\''
     line = line + ','
     ans = []
 
@@ -6,9 +7,9 @@ def csv_parser(line):
     i = 0
 
     while i < len(line):
-        if line[i] == '\'':
+        if line[i] == QUOTE:
             qstart = i
-            while line[i + 1] == '\'':  # no i<len(line) for append ,
+            while line[i + 1] == QUOTE:  # no i<len(line) for append ,
                 i += 1
             qblock = line[qstart:i + 1]
             next_ind = line.find(qblock, i + 1)
@@ -24,7 +25,11 @@ def csv_parser(line):
 
     return '|'.join(ans)
 
-print csv_parser('name,address,any')
-print csv_parser('\'john,add,coma\',address,any')
-print csv_parser('\'\'john,add,coma\'\',address,any')
-print csv_parser('address,any,\'john,add,coma\'')
+# print csv_parser('name,address,any')
+# print csv_parser('\'john,add,coma\',address,any')
+# print csv_parser('\'\'john,add,coma\'\',address,any')
+# print csv_parser('address,any,\'john,add,coma\'')
+
+
+# print csv_parser('aa,bb,"aa","aa,bb","aa\"\"aa\"\""')
+print csv_parser('aa,bb,\'aa\',\'aa,bb\',\'aa\'\'aa\'\'\'')

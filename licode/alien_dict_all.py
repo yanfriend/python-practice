@@ -55,10 +55,7 @@ class Solution(object):
             ret.append(path)
             return
 
-        qu = []
-        for c, cnt in indegree.items():
-            if cnt == 0:
-                qu.append(c)
+        qu = [k for k, v in indegree.items() if v==0]
 
         for q in qu:
             if q in visited: continue
@@ -76,6 +73,6 @@ print Solution().alienOrder(["baa", "abcd", "abca", "cab", "cad"]) # bdac
 print Solution().alienOrder(["caa", "aaa", "aab"]) # cab
 
 print Solution().alienOrder(["aaf", "ab"]) # fab, or abc, afb
-print Solution().alienOrder(["aaf", "ab", 'fg']) # fab, or abc, afb
+print Solution().alienOrder(["aaf", "ab", 'fg']) # ['abgf', 'abfg', 'agbf', 'agfb', 'afbg', 'afgb', 'gabf', 'gafb']
 
 print Solution().alienOrder(["ba", "aa", "ab"]) # empty b->a, a->b

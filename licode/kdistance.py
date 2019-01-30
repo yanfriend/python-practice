@@ -23,5 +23,5 @@ def k_distance(inp, target, k):
             ret.append(w)
     return ret
 
-print k_distance(["abcd", "abc", "abd", "ad", "c", "cc"], 'abcd', 2)
-# print k_distance(["ad", "c", "cc"], 'abcd', 2)
+# print k_distance(["abcd", "abc", "abd", "ad", "c", "cc"], 'abcd', 2) # ['abcd', 'abc', 'abd', 'ad']
+print k_distance(["ad", "c", "cc"], 'abcd', 2)
