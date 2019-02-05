@@ -53,3 +53,6 @@ class Solution(object):
 print Solution().slidingPuzzle([[1, 2, 3], [4, 0, 5], [6, 7, 8]]) # 14
 
 print Solution().slidingPuzzle([[1, 2, 3], [4, 5, 6], [0, 7, 8]]) # 2
+
+
+print Solution().slidingPuzzle([[0,2,1],[8,3,5],[6,7,4]])  # -1

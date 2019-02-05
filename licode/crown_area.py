@@ -35,3 +35,11 @@ print crow_area([
     'Y0 G0 Y1 Y0 Y0',
     'R0 R2 R0 Y1 G0',
 ])
+
+print crow_area([
+    "G0 W1 W1 W0 P2",
+    "W0 W0 F0 F0 F0",
+    "W0 W1 F0 S2 S1",
+    "G0 X0 G1 G0 G0",
+    "S0 M2 M0 G1 F0"
+])  # 41

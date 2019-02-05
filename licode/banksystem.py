@@ -15,4 +15,14 @@ def balance(id, st, end):
     end_ind = bisect.bisect_right(balance, (end, float('-inf')))
     return balance[start_ind][1], balance[end_ind][1]
 
+
 print balance(1, 2, 4)
+#  (1000, 200)
+
+'''
+bisect.bisect_left returns the leftmost place in the sorted list to insert the given element. 
+bisect.bisect_right returns the rightmost place in the sorted list to insert the given element.
+
+They are equivalent when the the element to be inserted is NOT present in the list. 
+Hence, they are not equivalent when the element to be inserted is IN the list.
+'''

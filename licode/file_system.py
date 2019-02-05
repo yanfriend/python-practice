@@ -7,25 +7,25 @@ value = 1
 class Solution(object):
     def __init__(self):
         self.folder = Trie()
-        self.wt = Trie()
+        self.watches = Trie()
 
     def create(self, path, val):
         folders = path.split('/')[1:]  # skip init '' from /
-        tmp = self.folder
+        curr = self.folder
         for f in folders[:-1]:
-            if f in tmp:
-                tmp = tmp[f]
+            if f in curr:
+                curr = curr[f]
             else:
                 return False
-        tmp = tmp[folders[-1]]
-        tmp[value] = val
+        curr = curr[folders[-1]]
+        curr[value] = val
 
-        wtmp = self.wt
+        curr = self.watches
         for f in folders:
-            if f in wtmp:
-                wtmp = wtmp[f]
-                if wtmp[value]:
-                    wtmp[value]()
+            if f in curr:
+                curr = curr[f]
+                if curr[value]:
+                    curr[value]()
             else:
                 return False
 
@@ -41,14 +41,14 @@ class Solution(object):
 
     def watch(self, path, func):
         folders = path.split('/')[1:]  # skip init '' from /
-        tmp = self.wt
+        curr = self.watches
         for f in folders[:-1]:
-            if f in tmp:
-                tmp = tmp[f]
+            if f in curr:
+                curr = curr[f]
             else:
                 return False
-        tmp = tmp[folders[-1]]
-        tmp[value] = func
+        curr = curr[folders[-1]]
+        curr[value] = func
 
 
 sol = Solution()

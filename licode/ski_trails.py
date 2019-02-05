@@ -48,12 +48,16 @@ def ski_trails_topo(trails, points, targets):
         graph[s][t]=int(dist)
 
     topo_path=[]
+    visited=set(['a'])  # error 1, missed visited
+
     def topo(node):
         for nei in graph[node]:
+            if nei in visited: continue
+            visited.add(nei)
             topo(nei)
         topo_path.append(node)
-
     topo('a')
+
     # topo_path from back to front
     for node in reversed(topo_path):
         for nei in graph[node]:

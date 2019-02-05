@@ -3,7 +3,7 @@ FIX_SIZE=4
 class ListNode(object):
     def __init__(self):
         self.next=None
-        self.vals=[]
+        self.vals=[] # if this fixed, use two indexes for front and end. Don't have to from Deep autumn version
 
 class Solution(object):
 
@@ -27,8 +27,9 @@ class Solution(object):
             self.head=self.head.next
             self.head_ind=0
         self.count-=1
+        val=self.head.vals[self.head_ind]
         self.head_ind+=1
-        return self.head.vals[self.head_ind-1]
+        return val
 
     def size(self):
         return self.count

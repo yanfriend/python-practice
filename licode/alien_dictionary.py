@@ -13,7 +13,7 @@ class Solution(object):
                 if dictionary[i][j] == dictionary[i-1][j]: continue
                 graph[dictionary[i-1][j]].add(dictionary[i][j]); break # error 1, miss break
 
-        for node in graph: # error 2, mix indegree calculate together
+        for node in graph: # error 2, mix indegree calculate together. must be: graph first, indegree second
             for nei in graph[node]:
                 indegree[nei]+=1
 

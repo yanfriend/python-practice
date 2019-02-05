@@ -16,9 +16,12 @@ def palin_pairs(words):
 
     return ret
 
-# print palin_pairs(['abb','bba','a', 'aba'])
-# print palin_pairs(["a",""])
-print palin_pairs(["abcd","dcba","lls","s","sssll"])
+print palin_pairs(['abb','bba','a', 'aba']) # [(1, 0), (0, 2), (0, 1), (2, 1)]
+
+print palin_pairs(["a",""]) # [(0, 1), (1, 0)]
+
+print palin_pairs(["abcd","dcba","lls","s","sssll"]) # [(1, 0), (0, 1), (3, 2), (2, 4)]
+
 
 
 '''

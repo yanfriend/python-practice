@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
+# refer: https://rextester.com/YBER46164
 
 class Solution(object):
     def hilbert_curve(self, x, y, iter):
         if iter == 0: return 1
 
-        harfLen = 2**(iter-1) # 1 << (iter - 1)  # 1(iter==1),2,4,8,16, length of each limit
-        harfNum = 2**(2*(iter-1)) # 1 << (2 * (iter - 1))  # 1(iter==1), 4, 16, 64  numbers in each limit
+        harfLen = 2**(iter-1) # 1 << (iter - 1)  # 1(iter==1),2,4,8,16, length of each limit. 1/4 side length
+        harfNum = 2**(2*(iter-1)) # 1 << (2 * (iter - 1))  # 1(iter==1), 4, 16, 64  numbers in each limit. 1/4 number
 
         if x >= harfLen and y >= harfLen:  # top, right.
             return 2 * harfNum + self.hilbert_curve(x - harfLen, y - harfLen, iter - 1)
